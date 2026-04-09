@@ -399,6 +399,7 @@ public class SetupPanel extends JPanel
     /**
      * Reads all the setup values and launches the race.
      * Creates Typist objects and passes them to the RacePanel.
+     * Reads all setup values, creates Typist objects and launches the race
      */
     private void startRace()
     {
