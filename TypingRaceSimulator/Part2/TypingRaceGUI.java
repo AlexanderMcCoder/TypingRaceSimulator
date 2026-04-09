@@ -7,8 +7,8 @@ import java.awt.*;
  * It manages switching between screens:
  * from (Setup) to (Race) to (Results) to (Stats/Leaderboard)
  *
- * @author Thanh Son Nguyen / 250267606
- * @version 25
+ * @author Thanh Son Nguyen
+ * @version 1
  */
 public class TypingRaceGUI
 {
