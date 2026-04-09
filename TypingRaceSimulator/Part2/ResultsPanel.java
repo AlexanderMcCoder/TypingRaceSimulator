@@ -12,8 +12,8 @@ import java.awt.event.*;
  * TypeTech: rewards high WPM
  * SpeedKeys: first place bonus
  *
- * @author Thanh Son Nguyen / 250267606
- * @version 25
+ * @author Thanh Son Nguyen
+ * @version 1
  */
 public class ResultsPanel extends JPanel
 {
