@@ -1,2 +1,5 @@
 *.class
 typists.txt
+
+*.DS_Store
+TypingRaceSimulator_Spec.pdf
