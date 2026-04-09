@@ -247,7 +247,6 @@ public class SetupPanel extends JPanel
         // Default typist names and symbols
         String[] defaultNames = {"TURBOFINGERS", "QWERTY_QUEEN", "HUNT_N_PECK"};
         String[] defaultSymbols = {"A", "B", "C"};
-        double[] defaultAccuracies = {0.85, 0.60, 0.30};
 
         nameFields = new JTextField[3];
         symbolFields = new JTextField[3];

@@ -5,7 +5,7 @@ import java.awt.event.*;
 /**
  * ResultsPanel displays the post-race summary.
  * Shows the winner, WPM, accuracy percentage, burnout count,
- * accuracy changes, leaderboard points (obeyingOption A), and
+ * accuracy changes, leaderboard points (obeying Option A), and
  * sponsor bonuses (Option B) for each typist.
  * each sponsor has a condition and bonus amount
  * KeyCorp: rewards no burnouts
@@ -426,7 +426,9 @@ public class ResultsPanel extends JPanel
 
             // WPM bonus
             if (wpmValues[i] > 30)
+
             {
+                
                 points[i] += (wpmValues[i] - 30) / 10;
             }
 

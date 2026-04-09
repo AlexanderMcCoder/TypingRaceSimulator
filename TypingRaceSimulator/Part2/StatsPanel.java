@@ -216,7 +216,7 @@ public class StatsPanel extends JPanel
         StringBuilder sb = new StringBuilder();
         sb.append("=== TYPIST COMPARISON ===\n\n");
 
-        // String.format formats text into fixed-width columns for alignment
+        // Tab spacing separates the columns
         sb.append("Name\t\tWPM\tAccuracy\tBurnouts\n");
         sb.append("--------------------------------------------------\n");
 
