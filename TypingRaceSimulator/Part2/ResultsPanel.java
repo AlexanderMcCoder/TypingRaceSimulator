@@ -431,7 +431,10 @@ public class ResultsPanel extends JPanel
             }
 
             // Burnout penalty
+            // burnoutCounts[i] / 3 means the typist has burnt out 3 times
+            // burnCounts[i] causes a + 0pts bug where typist should get 0 points due to burnout
             points[i] -= burnoutCounts[i] / 3;
+            // winner cannot drop below 1; all others cannot drop below 0.
             if (i == winnerIndex && points[i] < 1)
             {
                 points[i] = 1;
