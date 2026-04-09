@@ -420,7 +420,15 @@ public class SetupPanel extends JPanel
             // if the symbol field is empty, use the default symbol 'A' + i 
             // (A for typist 1, B for typist 2, C for typist 3)
             // if the symbol field is not empty, use the symbol from the field
-            char symbol = symStr.isEmpty() ? (char)('A' + i) : symStr.charAt(0);
+            char symbol;
+            if (symStr.isEmpty())
+            {
+                symbol = (char)('A' + i);
+            }
+            else
+            {
+                symbol = symStr.charAt(0);
+            }
 
             // Start with base accuracy and apply modifiers
             double accuracy = baseAccuracies[i];
