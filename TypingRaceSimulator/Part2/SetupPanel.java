@@ -6,12 +6,12 @@ import java.awt.event.*;
  * SetupPanel is the configuration screen shown before the race begins.
  * Users can:
  *   1. Choose a passage (short, medium, long, or custom)
- *   2. Choose how many typists compete (2 to 6... but we support up to 3 for simplicity)
+ *   2. Choose how many typists compete (around 2 to 3 for simplicity)
  *   3. Apply difficulty modifiers (Autocorrect, Caffeine Mode, Night Shift)
  *   4. Customise each typist (name, symbol, typing style, keyboard, accessories)
  *
- * @author Thanh Son Nguyen / 250267606
- * @version 25
+ * @author Thanh Son Nguyen 
+ * @version 1
  */
 public class SetupPanel extends JPanel
 {
