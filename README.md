@@ -17,6 +17,17 @@ TypingRaceSimulator/
 - Java Development Kit (JDK) 11 or higher
 - No external libraries required
 
+The main method is already set up with 3 typists:
+```java
+public static void main(String[] args) {
+    TypingRace race = new TypingRace(40);
+    race.addTypist(new Typist('A', "TURBOFINGERS", 0.85), 1);
+    race.addTypist(new Typist('B', "QWERTY_QUEEN",  0.60), 2);
+    race.addTypist(new Typist('C', "HUNT_N_PECK",   0.30), 3);
+    race.startRace();
+}
+```
+
 ### How to compile
 
 ```bash
@@ -33,11 +44,24 @@ java TypingRace
 ## Part 2 — GUI Simulation
 
 
-## Dependencies
+### Dependencies
 
 - Java Development Kit (JDK) 11 or higher
 - Java Swing (included in standard JDK)
 - No external libraries required
+
+The main method is:
+```java
+public static void main(String[] args) {
+    TypingRaceGUI gui = new TypingRaceGUI();
+    gui.startRaceGUI();
+}
+```
+
+The Part 2 main method is intentionally simple because the constructor handles all 
+setup — creating the JFrame, CardLayout, and all 5 screen panels. 
+startRaceGUI() then shows the setup screen first.
+
 
 ### How to compile
 ```bash
