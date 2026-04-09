@@ -7,8 +7,8 @@ import java.awt.event.*;
  * Shows cumulative points ranking (Option A) and total earnings ranking (Option B)
  * across all races, along with titles and badges earned.
  *
- * @author Thanh Son Nguyen / 250267606
- * @version 25
+ * @author Thanh Son Nguyen 
+ * @version 1
  */
 public class LeaderboardPanel extends JPanel
 {
