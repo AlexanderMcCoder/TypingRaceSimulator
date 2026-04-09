@@ -17,6 +17,7 @@ import java.io.IOException;
  *
  * @author TyPosaurus
  * @version 0.7 (the other 0.3 is left as an exercise for the reader)
+ * 
  */
 public class TypingRace
 {
