@@ -500,6 +500,7 @@ public class ResultsPanel extends JPanel
         String badge = "";
 
         // First Victory — awarded for winning at least 1 race
+        // cumulativePoints[typistIndex] >= 1 means the typist has won at least 1 race
         if (typistIndex == winnerIndex && cumulativePoints[typistIndex] >= 1)
         {
             badge += "First Victory ";
