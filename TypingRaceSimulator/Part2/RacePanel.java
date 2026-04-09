@@ -8,8 +8,8 @@ import java.awt.event.*;
  * handles the game loop using a Swing Timer, and sends results
  * sends data to ResultsPanel when the race ends.
  *
- * @author Thanh Son Nguyen / 250267606
- * @version 25
+ * @author Thanh Son Nguyen
+ * @version 1
  */
 public class RacePanel extends JPanel
 {
