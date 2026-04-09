@@ -6,8 +6,8 @@
  * He left a sticky note: "the slide-back thing is optional probably".
  * It is not optional. Good luck.
  *
- * @author thanh son nguyen / 250267606
- * @version 25
+ * @author thanh son nguyen
+ * @version 1
  */
 public class Typist
 {
