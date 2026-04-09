@@ -192,7 +192,7 @@ public class Typist
         }
         else {
             // round the accuracy to 2 decimal places
-            accuracy = Math.round(newAccuracy * 100.0) / 100.0;;
+            accuracy = Math.round(newAccuracy * 100.0) / 100.0;
         }
     }
 
