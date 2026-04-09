@@ -352,12 +352,20 @@ public class LeaderboardPanel extends JPanel
     private String getBadge(int i)
     {
         String badge = "";
+        
+        if (cumulativePoints[i] >= 1)
+        {
+            badge += "First Victory ";
+        }
+
         if (cumulativePoints[i] >= 9) {
             badge += "Speed Demon ";
         }
+
         if (raceCount[i] >= 5) {
             badge += "Iron Fingers";
         }
+        
         return badge.trim();
     }
 
