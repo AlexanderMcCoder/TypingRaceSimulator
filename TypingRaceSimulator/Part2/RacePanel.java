@@ -30,8 +30,8 @@ public class RacePanel extends JPanel
 
     // --- Race mechanics constants ---
     private static final double MISTYPE_BASE_CHANCE = 0.3;
-    private static final int    SLIDE_BACK_AMOUNT   = 2;
-    private static final int    BURNOUT_DURATION    = 3;
+    private static final int SLIDE_BACK_AMOUNT = 2;
+    private static final int BURNOUT_DURATION = 3;
 
     // --- Race state ---
     private int turnCount;
@@ -77,9 +77,9 @@ public class RacePanel extends JPanel
         centrePanel.setBackground(new Color(20, 20, 20));
 
         // We support up to 3 typists — lanes created dynamically in setupRace()
-        lanePanels    = new JPanel[3];
+        lanePanels = new JPanel[3];
         passageLabels = new JLabel[3];
-        statusLabels  = new JLabel[3];
+        statusLabels = new JLabel[3];
 
         for (int i = 0; i < 3; i++)
         {
@@ -104,7 +104,7 @@ public class RacePanel extends JPanel
             statusLabels[i].setPreferredSize(new Dimension(280, 40));
 
             lanePanels[i].add(passageLabels[i], BorderLayout.CENTER);
-            lanePanels[i].add(statusLabels[i],  BorderLayout.EAST);
+            lanePanels[i].add(statusLabels[i], BorderLayout.EAST);
 
             centrePanel.add(lanePanels[i]);
         }
@@ -116,7 +116,7 @@ public class RacePanel extends JPanel
 
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setBackground(new Color(20, 20, 20));
-        bottomPanel.add(turnLabel,   BorderLayout.NORTH);
+        bottomPanel.add(turnLabel, BorderLayout.NORTH);
         bottomPanel.add(legendLabel, BorderLayout.SOUTH);
 
         add(centrePanel, BorderLayout.CENTER);
