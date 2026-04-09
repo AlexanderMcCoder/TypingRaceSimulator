@@ -335,27 +335,27 @@ public class RacePanel extends JPanel
 
             // StringBuilder builds the HTML string piece by piece efficiently
             // JLabel supports HTML text — wrapping in <html> tags for coloured characters
-            StringBuilder sb = new StringBuilder("<html><font face='Courier New'>");
+            StringBuilder sb = new StringBuilder("<html><body style='white-space:pre'><font face='Courier New'>");
 
             // Characters already typed — shown in green
             sb.append("<font color='#00CC44'>");
-            sb.append(passage.substring(0, progress).replace(" ", "&nbsp;"));
+            sb.append(passage.substring(0, progress));
             sb.append("</font>");
 
             // Current cursor character — highlighted in yellow
             if (progress < passageLength)
             {
                 sb.append("<font color='#000000' style='background-color:#FFFF00'>");
-                sb.append(passage.charAt(progress) == ' ' ? "&nbsp;" : passage.charAt(progress));
+                sb.append(passage.charAt(progress) == ' ' ? " " : passage.charAt(progress));
                 sb.append("</font>");
 
                 // Remaining characters — shown in grey
                 sb.append("<font color='#888888'>");
-                sb.append(passage.substring(progress + 1).replace(" ", "&nbsp;"));
+                sb.append(passage.substring(progress + 1));
                 sb.append("</font>");
             }
 
-            sb.append("</font></html>");
+            sb.append("</font></body></html>");
             passageLabels[i].setText(sb.toString());
 
             // Status label on the right
