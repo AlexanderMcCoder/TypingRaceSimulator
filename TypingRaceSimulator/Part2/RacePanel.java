@@ -302,8 +302,8 @@ public class RacePanel extends JPanel
 
         if (Math.random() < burnoutChance)
         {
-            // Wrist support reduces burnout duration by 1 turn
-            int burnoutDuration = wristSupport[i] ? BURNOUT_DURATION - 1 : BURNOUT_DURATION;
+            // Wrist support from accessory OR purchased upgrade reduces burnout duration
+            int burnoutDuration = (wristSupport[i] || gui.getHasWristSupport()[i]) ? BURNOUT_DURATION - 1 : BURNOUT_DURATION;
             if (burnoutDuration < 1)
             {
                 burnoutDuration = 1;
@@ -334,7 +334,7 @@ public class RacePanel extends JPanel
             }
 
             // StringBuilder builds the HTML string piece by piece efficiently
-            // JLabel supports HTML text — wrapping in <html> tags enables coloured characters
+            // JLabel supports HTML text — wrapping in <html> tags for coloured characters
             StringBuilder sb = new StringBuilder("<html><font face='Courier New'>");
 
             // Characters already typed — shown in green

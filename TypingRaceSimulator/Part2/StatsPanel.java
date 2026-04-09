@@ -259,7 +259,7 @@ public class StatsPanel extends JPanel
     }
 
     /**
-     * Helper to create a bold section title label.
+     * Helper method to create a bold section title label.
      */
     private JLabel makeSectionLabel(String text)
     {
@@ -270,7 +270,7 @@ public class StatsPanel extends JPanel
     }
 
     /**
-     * Helper to create a small grey stat label.
+     * Helper method to create a small grey stat label.
      */
     private JLabel makeStatLabel(String text)
     {

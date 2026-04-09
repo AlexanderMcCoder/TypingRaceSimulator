@@ -131,7 +131,7 @@ public class SetupPanel extends JPanel
         panel.setBackground(new Color(30, 30, 30));
         panel.setBorder(BorderFactory.createLineBorder(new Color(0, 200, 255)));
 
-        // Passage dropdown
+        // Passage dropdown bar using JComboBox<>
         JLabel passageLabel = new JLabel("Choose Passage:");
         passageLabel.setForeground(Color.WHITE);
         passageLabel.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -164,6 +164,8 @@ public class SetupPanel extends JPanel
         seatLabel.setForeground(Color.WHITE);
         seatLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 
+        //JComboBox<Integer>: holds Integer items instead of strings
+        // holds two options: 2 and 3 for the number of typists
         seatCountComboBox = new JComboBox<>(new Integer[]{2, 3});
         seatCountComboBox.setBackground(new Color(50, 50, 50));
         seatCountComboBox.setForeground(Color.WHITE);
@@ -199,6 +201,7 @@ public class SetupPanel extends JPanel
         panel.setBackground(new Color(30, 30, 30));
         panel.setBorder(BorderFactory.createLineBorder(new Color(255, 165, 0)));
 
+        //check box of 3 modifiers: Autocorrect, Caffeine Mode, Night Shift
         autocorrectCheckBox = new JCheckBox("Autocorrect — slideBack amount is halved");
         autocorrectCheckBox.setForeground(Color.WHITE);
         autocorrectCheckBox.setBackground(new Color(30, 30, 30));
@@ -391,6 +394,8 @@ public class SetupPanel extends JPanel
         return modifiers[selected];
     }
 
+    
+
     /**
      * Reads all the setup values and launches the race.
      * Creates Typist objects and passes them to the RacePanel.
@@ -411,6 +416,9 @@ public class SetupPanel extends JPanel
         {
             String name = nameFields[i].getText().trim();
             String symStr = symbolFields[i].getText().trim();
+            // if the symbol field is empty, use the default symbol 'A' + i 
+            // (A for typist 1, B for typist 2, C for typist 3)
+            // if the symbol field is not empty, use the symbol from the field
             char symbol = symStr.isEmpty() ? (char)('A' + i) : symStr.charAt(0);
 
             // Start with base accuracy and apply modifiers
@@ -419,12 +427,42 @@ public class SetupPanel extends JPanel
             accuracy += getKeyboardModifier(i);
 
             // Accessories
-            if (wristSupportBoxes[i].isSelected()) accuracy += 0.02;
-            if (energyDrinkBoxes[i].isSelected()) accuracy += 0.05;
-            if (headphonesBoxes[i].isSelected()) accuracy += 0.03;
+            if (wristSupportBoxes[i].isSelected()) {
+                accuracy += 0.02;
+            }
+            if (energyDrinkBoxes[i].isSelected()) {
+                accuracy += 0.05;
+            }
+            if (headphonesBoxes[i].isSelected()) {
+                accuracy += 0.03;
+            }
 
             // Night shift reduces everyone's accuracy
-            if (nightShiftCheckBox.isSelected()) accuracy -= 0.05;
+            if (nightShiftCheckBox.isSelected()) {
+                accuracy -= 0.05;
+            }
+
+            // apply purchased upgrades: better keyboard
+            if (gui.getHasBetterKeyboard()[i]) {
+                accuracy += 0.05;
+            }
+
+            // rank affects starting accuracy
+            // Get cumulative points from GUI
+            int[] points = gui.getCumulativePoints();
+            int[] sortedIndexes = getSortedIndexes(points);
+            for (int rank = 0; rank < sortedIndexes.length; rank++)
+            {
+                if (sortedIndexes[rank] == i)
+                {
+                    if (rank == 0) {
+                        accuracy -= 0.03; // champion faces higher pressure
+                    }
+                    if (rank == 2){
+                        accuracy += 0.03; // underdog gets a boost
+                    }
+                }
+            }
 
             // Clamp accuracy between 0.1 and 1.0
             if (accuracy < 0.1) accuracy = 0.1;
@@ -446,7 +484,41 @@ public class SetupPanel extends JPanel
             headphones[i] = headphonesBoxes[i].isSelected();
         }
 
+
         gui.getRacePanel().setupRace(typists, passage, autocorrect, caffeineMode, wristSupport, energyDrink, headphones);
         gui.showScreen(TypingRaceGUI.RACE_SCREEN);
+    }
+
+    /**
+     * Returns indexes sorted by descending score using bubble sort.
+     * Index 0 in the result = the typist with the highest score.
+     *
+     * @param scores the scores to sort by
+     * @return sorted array of typist indexes
+     */
+    private int[] getSortedIndexes(int[] scores)
+    {
+        int n = scores.length;
+        int[] indexes = new int[n];
+
+        // Initialise indexes as an identity mapping [0, 1, 2, ...].
+        for (int i = 0; i < n; i++) {
+            indexes[i] = i;
+        }
+
+        // Bubble sort (descending) on the indirection array.
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - 1 - i; j++)
+            {
+                if (scores[indexes[j]] < scores[indexes[j + 1]])
+                {
+                    int temp = indexes[j];
+                    indexes[j] = indexes[j + 1];
+                    indexes[j + 1] = temp;
+                }
+            }
+        }
+        return indexes;
     }
 }

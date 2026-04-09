@@ -176,7 +176,7 @@ public class ResultsPanel extends JPanel
         // Calculate sponsor bonuses for this race
         int[] sponsorBonuses = calculateSponsorBonuses();
 
-        // Update cumulative data
+        // Update cumulative data for each typist after the race:
         for (int i = 0; i < typists.length; i++)
         {
             cumulativePoints[i] += pointsEarned[i];
@@ -193,6 +193,22 @@ public class ResultsPanel extends JPanel
                 winsWithoutBurnout[i] = 0;
             }
         }
+
+        // Auto purchase upgrades if typist can afford them
+        for (int i = 0; i < typists.length; i++)
+        {
+            if (totalEarnings[i] >= 100)
+            {
+                gui.setBetterKeyboard(i, true);
+            }
+            if (totalEarnings[i] >= 150)
+            {
+                gui.setWristSupport(i, true);
+            }
+        }
+
+        // Save cumulative points to GUI so SetupPanel can read them for next race
+        gui.setCumulativePoints(cumulativePoints.clone());
 
         // removeAll() clears all existing components so the panel can be rebuilt with fresh data
         buildStatsPanel();
@@ -262,7 +278,7 @@ public class ResultsPanel extends JPanel
         // Removes all previously added components before rebuilding with new race data
         leaderboardPanel.removeAll();
 
-        JLabel title = new JLabel("Leaderboard (Option A)");
+        JLabel title = new JLabel("Leaderboard");
         title.setFont(new Font("Arial", Font.BOLD, 16));
         title.setForeground(new Color(255, 215, 0));
         leaderboardPanel.add(title);
@@ -322,12 +338,13 @@ public class ResultsPanel extends JPanel
         // Removes all previously added components before rebuilding with new race data
         sponsorPanel.removeAll();
 
-        JLabel title = new JLabel("Sponsors (Option B)");
+        JLabel title = new JLabel("Sponsors");
         title.setFont(new Font("Arial", Font.BOLD, 16));
         title.setForeground(new Color(0, 255, 100));
         sponsorPanel.add(title);
         sponsorPanel.add(Box.createVerticalStrut(10));
 
+        // Build one sponsor card per typist and append it to sponsorPanel.
         for (int i = 0; i < typists.length; i++)
         {
             // Sponsor name
@@ -345,7 +362,24 @@ public class ResultsPanel extends JPanel
             sponsorPanel.add(makeStatLabel("Earned: +" + sponsorBonuses[i] + " coins"));
             sponsorPanel.add(makeStatLabel("Total: " + totalEarnings[i] + " coins"));
             sponsorPanel.add(Box.createVerticalStrut(8));
+
+            // Show upgrade unlocked message
+            if (totalEarnings[i] >= 150)
+            {
+                JLabel upgradeLabel = new JLabel("Upgrade unlocked: Better Keyboard + Wrist Support!");
+                upgradeLabel.setFont(new Font("Arial", Font.BOLD, 11));
+                upgradeLabel.setForeground(new Color(0, 255, 100));
+                sponsorPanel.add(upgradeLabel);
+            }
+            else if (totalEarnings[i] >= 100)
+            {
+                JLabel upgradeLabel = new JLabel("Upgrade unlocked: Better Keyboard!");
+                upgradeLabel.setFont(new Font("Arial", Font.BOLD, 11));
+                upgradeLabel.setForeground(new Color(0, 255, 100));
+                sponsorPanel.add(upgradeLabel);
+            }
         }
+
     }
 
     /**
@@ -367,6 +401,9 @@ public class ResultsPanel extends JPanel
         // Sort remaining typists by progress for 2nd and 3rd place
         int secondPlace = -1;
         int bestProgress = -1;
+
+        // Scan all typists, skipping the winner, to find the one with the highest progress.
+        // Using > so only the first typist encountered wins a tie for second place.
         for (int i = 0; i < typists.length; i++)
         {
             if (i != winnerIndex && typists[i].getProgress() > bestProgress)
@@ -376,6 +413,11 @@ public class ResultsPanel extends JPanel
             }
         }
 
+        // Calculate the final points for each typist:
+        //1. Base points: 3 for 1st place, 2 for 2nd place, 1 for everyone else.
+        //2. WPM bonus:   +1 point for every 10 WPM above 30 (integer division, so 31–39 WPM = +1, etc.).
+        //3. Burnout penalty: -1 point for every 3 burnouts accumulated.
+        //4. Floor: winner cannot drop below 1; all others cannot drop below 0.
         for (int i = 0; i < typists.length; i++)
         {
             if (i == winnerIndex) points[i] = 3;
@@ -456,6 +498,12 @@ public class ResultsPanel extends JPanel
     private String getBadge(int typistIndex)
     {
         String badge = "";
+
+        // First Victory — awarded for winning at least 1 race
+        if (typistIndex == winnerIndex && cumulativePoints[typistIndex] >= 1)
+        {
+            badge += "First Victory ";
+        }
 
         // Speed Demon — 3 consecutive wins
         if (typistIndex == winnerIndex && cumulativePoints[typistIndex] >= 9)

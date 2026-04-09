@@ -33,6 +33,13 @@ public class TypingRaceGUI
     private StatsPanel statsPanel;
     private LeaderboardPanel leaderboardPanel;
 
+    // Stores cumulative points for each typist position across races
+    private int[] cumulativePoints = {0, 0, 0};
+
+    // Tracks which upgrades each typist has purchased
+    private boolean[] hasBetterKeyboard = {false, false, false};
+    private boolean[] hasWristSupport   = {false, false, false};
+
 
     // the Constructor: which builds the main window and all screen panels.
 
@@ -124,6 +131,35 @@ public class TypingRaceGUI
     }
 
     /**
+     * Returns the cumulative points for each typist position across races.
+     *
+     * @return the cumulative points array
+     */
+    public int[] getCumulativePoints()
+    {
+        return cumulativePoints;
+    }
+
+    /**
+     * Returns the array of booleans indicating which typists have purchased the better keyboard upgrade.
+     *
+     * @return the array of booleans
+     */
+    public boolean[] getHasBetterKeyboard() { 
+        return hasBetterKeyboard; 
+    }
+
+
+    /**
+     * Returns the array of booleans indicating which typists have purchased the wrist support upgrade.
+     *
+     * @return the array of booleans
+     */
+    public boolean[] getHasWristSupport()   { 
+        return hasWristSupport; 
+    }
+
+    /**
      * The entry point for the GUI version of the typing race.
      * Called from outside to launch the graphical application.
      */
@@ -132,6 +168,36 @@ public class TypingRaceGUI
         // The constructor already sets everything up and shows the window.
         // This method exists as the required entry point from the spec.
         showScreen(SETUP_SCREEN);
+    }
+
+    /**
+     * Sets the cumulative points for each typist position across races.
+     *
+     * @param points the cumulative points array
+     */
+    public void setCumulativePoints(int[] points)
+    {
+        this.cumulativePoints = points;
+    }
+
+    /**
+     * Sets the array of booleans indicating which typists have purchased the better keyboard upgrade.
+     *
+     * @param index the index of the typist
+     * @param value the boolean value
+     */
+    public void setBetterKeyboard(int index, boolean value) { 
+        hasBetterKeyboard[index] = value; 
+    }
+
+    /**
+     * Sets the array of booleans indicating which typists have purchased the wrist support upgrade.
+     *
+     * @param index the index of the typist
+     * @param value the boolean value
+     */
+    public void setWristSupport(int index, boolean value)   { 
+        hasWristSupport[index] = value; 
     }
 
 

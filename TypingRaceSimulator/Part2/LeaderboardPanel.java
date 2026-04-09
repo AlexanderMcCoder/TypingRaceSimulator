@@ -7,8 +7,8 @@ import java.awt.event.*;
  * Shows cumulative points ranking (Option A) and total earnings ranking (Option B)
  * across all races, along with titles and badges earned.
  *
- * @author Thanh Son Nguyen
- * @version 1.0
+ * @author Thanh Son Nguyen / 250267606
+ * @version 25
  */
 public class LeaderboardPanel extends JPanel
 {
@@ -344,6 +344,7 @@ public class LeaderboardPanel extends JPanel
      * Returns a badge for a typist based on their race history.
      * Speed Demon: accumulated 9+ points (roughly 3 wins)
      * Iron Fingers: 5+ races completed
+     * First Victory: won at least 1 race
      *
      * @param i typist index
      * @return badge string or empty string if no badge earned
@@ -361,7 +362,7 @@ public class LeaderboardPanel extends JPanel
     }
 
     /**
-     * Helper to create a small grey stat label.
+     * Helper method to create a small grey stat label.
      */
     private JLabel makeStatLabel(String text)
     {
@@ -372,7 +373,7 @@ public class LeaderboardPanel extends JPanel
     }
 
     /**
-     * Helper to create a green upgrade label.
+     * creates a green upgrade label.
      */
     private JLabel makeUpgradeLabel(String text)
     {
@@ -383,7 +384,7 @@ public class LeaderboardPanel extends JPanel
     }
 
     /**
-     * Helper to add an upgrade label directly to a panel.
+     * Helper method to add an upgrade label directly to a panel.
      */
     private void earningsLabel(String text, JPanel panel)
     {
