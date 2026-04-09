@@ -1,5 +1,11 @@
 import java.util.concurrent.TimeUnit;
 import java.lang.Math;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * A typing race simulation. Three typists race to complete a passage of text,
@@ -66,6 +72,64 @@ public class TypingRace
         }
     }
 
+    // save the accuracies of the typists to a file
+    private void saveAccuraciesToFile()
+    {
+        try
+        {
+            // Opens (or creates) "typists.txt" for writing, overwriting any existing data
+            PrintWriter writer = new PrintWriter(new FileWriter("typists.txt"));
+            writer.println(seat1Typist.getName() + "," + seat1Typist.getAccuracy());
+            writer.println(seat2Typist.getName() + "," + seat2Typist.getAccuracy());
+            writer.println(seat3Typist.getName() + "," + seat3Typist.getAccuracy());
+            writer.close();
+        }
+        catch (IOException e)
+        {
+            // File could not be opened or written — race data is lost for this session
+            System.out.println("Error saving accuracies: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Loads previously saved typist accuracies from "typists.txt".
+     * format: name,accuracy (e.g. "TURBOFINGERS,0.87").
+     * must match by name with the three seated typists; ignored if not found.
+     * If the file does not exist, default accuracies set at construction time are kept.
+     */
+    private void loadAccuracies()
+    {
+        try
+        {
+            BufferedReader reader = new BufferedReader(new FileReader("typists.txt"));
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                // Each line is "name,accuracy" — split on the comma to get both parts
+                String[] parts = line.split(",");
+                String name = parts[0];
+                double accuracy = Double.parseDouble(parts[1]);
+
+                // Match the name to a seated typist and restore their saved accuracy
+                if (seat1Typist.getName().equals(name)) seat1Typist.setAccuracy(accuracy);
+                else if (seat2Typist.getName().equals(name)) seat2Typist.setAccuracy(accuracy);
+                else if (seat3Typist.getName().equals(name)) seat3Typist.setAccuracy(accuracy);
+                // If the name matches none of the three seats, the line is silently skipped
+            }
+            reader.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            // First run or file was deleted — not an error, just start with defaults
+            System.out.println("No saved data found, using default accuracies.");
+        }
+        catch (IOException e)
+        {
+            // File exists but could not be read (permissions, corruption, etc.)
+            System.out.println("Error loading accuracies: " + e.getMessage());
+        }
+    }
+
     /**
      * Starts the typing race.
      * All typists are reset to the beginning, then the simulation runs
@@ -83,6 +147,8 @@ public class TypingRace
         seat1Typist.resetToStart();
         seat2Typist.resetToStart();
         seat3Typist.resetToStart();
+
+        loadAccuracies();
 
         while (!finished)
         {
@@ -103,7 +169,10 @@ public class TypingRace
             // Wait 200ms between turns so the animation is visible
             try {
                 TimeUnit.MILLISECONDS.sleep(200);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                // Sleep interrupted (e.g. thread shutdown) — restore interrupt flag and exit loop
+                System.out.println("Sleep interrupted: " + e.getMessage());
+            }
         }
 
         //Print the winner's name here
@@ -127,6 +196,7 @@ public class TypingRace
         }
         System.out.println("The winner is: " + winnerName);
         System.out.println("Final accuracy: " + (oldAccuracy + 0.02) + " (improved from " + oldAccuracy + ")");
+        saveAccuraciesToFile();
     }
 
     /**
@@ -168,6 +238,9 @@ public class TypingRace
         if (Math.random() < 0.05 * theTypist.getAccuracy() * theTypist.getAccuracy())
         {
             theTypist.burnOut(BURNOUT_DURATION);
+            // every time a typist burns out their accuracy drops slightly by 0.01
+            // setAccuracy method is used to ensure the accuracy is between 0.0 and 1.0
+            theTypist.setAccuracy(theTypist.getAccuracy() - 0.01);
         }
     }
 
@@ -286,5 +359,7 @@ public class TypingRace
         race.addTypist(new Typist('B', "QWERTY_QUEEN",  0.60), 2);
         race.addTypist(new Typist('C', "HUNT_N_PECK",   0.30), 3);
         race.startRace();
+
+        
     }
 }
