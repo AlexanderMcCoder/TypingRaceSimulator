@@ -6,8 +6,8 @@ import java.awt.event.*;
  * StatsPanel displays detailed performance statistics for each typist.
  * Shows personal bests, race history, and a side-by-side comparison view.
  *
- * @author Thanh Son Nguyen / 250267606
- * @version 25
+ * @author Thanh Son Nguyen
+ * @version 1
  */
 public class StatsPanel extends JPanel
 {
