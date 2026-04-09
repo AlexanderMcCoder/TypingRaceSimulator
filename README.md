@@ -7,7 +7,7 @@ Object Oriented Programming Project — ECS414U
 ```
 TypingRaceSimulator/
 ├── Part1/    # Textual simulation (Java, command-line)
-└── Part2/    # GUI simulation (to be completed)
+└── Part2/    # GUI simulation (Java Swing)
 ```
 
 ## Part 1 — Textual Simulation
