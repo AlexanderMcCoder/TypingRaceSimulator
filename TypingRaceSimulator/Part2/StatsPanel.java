@@ -217,28 +217,26 @@ public class StatsPanel extends JPanel
         sb.append("=== TYPIST COMPARISON ===\n\n");
 
         // String.format formats text into fixed-width columns for alignment
-        sb.append(String.format("%-20s %8s %10s %10s\n","Name", "WPM", "Accuracy", "Burnouts"));
+        sb.append("Name\t\tWPM\tAccuracy\tBurnouts\n");
         sb.append("--------------------------------------------------\n");
 
         for (int i = 0; i < typists.length; i++)
         {
-            sb.append(String.format("%-20s %8d %9d%% %10d\n",
-                typists[i].getName(),
-                currentWPM[i],
-                currentAccuracy[i],
-                currentBurnouts[i]));
+            sb.append(typists[i].getName() + "\t\t"
+            + currentWPM[i] + "\t"
+            + currentAccuracy[i] + "%\t\t"
+            + currentBurnouts[i] + "\n");
         }
 
         sb.append("\n=== PERSONAL BESTS ===\n\n");
-        sb.append(String.format("%-20s %8s %10s\n", "Name", "Best WPM", "Best Acc"));
+        sb.append("Name\t\tBest WPM\tBest Acc\n");
         sb.append("------------------------------------------\n");
 
         for (int i = 0; i < typists.length; i++)
         {
-            sb.append(String.format("%-20s %8d %9d%%\n",
-                typists[i].getName(),
-                bestWPM[i],
-                bestAccuracyPercent[i]));
+            sb.append(typists[i].getName() + "\t\t"
+            + bestWPM[i] + "\t\t"
+            + bestAccuracyPercent[i] + "%\n");
         }
 
         // JTextArea inside JScrollPane for a scrollable comparison dialog
