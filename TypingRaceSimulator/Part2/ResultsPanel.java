@@ -348,7 +348,17 @@ public class ResultsPanel extends JPanel
         for (int i = 0; i < typists.length; i++)
         {
             // Sponsor name
-            String sponsorName = i < SPONSOR_NAMES.length ? SPONSOR_NAMES[i] : "No Sponsor";
+            String sponsorName;
+            if (i < SPONSOR_NAMES.length)
+            {
+                sponsorName = SPONSOR_NAMES[i];
+            }
+            else
+            {
+                sponsorName = "No Sponsor";
+            }
+
+            // Sponsor label
             JLabel sponsorLabel = new JLabel(typists[i].getName() + " - " + sponsorName);
             sponsorLabel.setFont(new Font("Arial", Font.BOLD, 12));
             sponsorLabel.setForeground(Color.WHITE);

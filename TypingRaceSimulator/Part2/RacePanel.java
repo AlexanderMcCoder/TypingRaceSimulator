@@ -281,7 +281,11 @@ public class RacePanel extends JPanel
         if (Math.random() < mistypeChance)
         {
             // Autocorrect halves the slide back amount
-            int slideAmount = autocorrect ? SLIDE_BACK_AMOUNT / 2 : SLIDE_BACK_AMOUNT;
+            int slideAmount = SLIDE_BACK_AMOUNT;
+            if (autocorrect)
+            {
+                slideAmount = SLIDE_BACK_AMOUNT / 2;
+            }
 
             if (slideAmount < 1)
             {
@@ -303,7 +307,11 @@ public class RacePanel extends JPanel
         if (Math.random() < burnoutChance)
         {
             // Wrist support from accessory OR purchased upgrade reduces burnout duration
-            int burnoutDuration = (wristSupport[i] || gui.getHasWristSupport()[i]) ? BURNOUT_DURATION - 1 : BURNOUT_DURATION;
+            int burnoutDuration = BURNOUT_DURATION;
+            if (wristSupport[i] || gui.getHasWristSupport()[i])
+            {
+                burnoutDuration = BURNOUT_DURATION - 1;
+            }
             if (burnoutDuration < 1)
             {
                 burnoutDuration = 1;
