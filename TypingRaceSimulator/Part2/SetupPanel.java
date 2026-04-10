@@ -156,7 +156,14 @@ public class SetupPanel extends JPanel
         passageComboBox.addActionListener(e -> {
             boolean isCustom = passageComboBox.getSelectedItem().equals("Custom");
             customPassageField.setEnabled(isCustom);
-            customPassageField.setForeground(isCustom ? Color.WHITE : Color.GRAY);
+            if (isCustom)
+            {
+                customPassageField.setForeground(Color.WHITE);
+            }
+            else
+            {
+                customPassageField.setForeground(Color.GRAY);
+            }
         });
 
         // Number of typists

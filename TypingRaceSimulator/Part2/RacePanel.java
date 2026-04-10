@@ -354,7 +354,16 @@ public class RacePanel extends JPanel
             if (progress < passageLength)
             {
                 sb.append("<font color='#000000' style='background-color:#FFFF00'>");
-                sb.append(passage.charAt(progress) == ' ' ? " " : passage.charAt(progress));
+
+                if (passage.charAt(progress) == ' ')
+                {
+                    sb.append(" ");
+                }
+                else
+                {
+                    sb.append(passage.charAt(progress));
+                }
+                
                 sb.append("</font>");
 
                 // Remaining characters — shown in grey

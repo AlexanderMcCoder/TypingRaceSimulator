@@ -365,7 +365,7 @@ public class LeaderboardPanel extends JPanel
         if (raceCount[i] >= 5) {
             badge += "Iron Fingers";
         }
-        
+
         return badge.trim();
     }
 

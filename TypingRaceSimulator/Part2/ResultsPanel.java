@@ -240,7 +240,16 @@ public class ResultsPanel extends JPanel
             // Typist name header
             JLabel nameLabel = new JLabel(typists[i].getName());
             nameLabel.setFont(new Font("Arial", Font.BOLD, 13));
-            nameLabel.setForeground(i == winnerIndex ? new Color(255, 215, 0) : Color.WHITE);
+
+            if (i == winnerIndex)
+            {
+                nameLabel.setForeground(new Color(255, 215, 0));
+            }
+            else
+            {
+                nameLabel.setForeground(Color.WHITE);
+            }
+            
             statsPanel.add(nameLabel);
 
             // WPM
@@ -365,7 +374,15 @@ public class ResultsPanel extends JPanel
             sponsorPanel.add(sponsorLabel);
 
             // Sponsor condition
-            String condition = i < SPONSOR_CONDITIONS.length ? SPONSOR_CONDITIONS[i] : "";
+            String condition;
+            if (i < SPONSOR_CONDITIONS.length)
+            {
+                condition = SPONSOR_CONDITIONS[i];
+            }
+            else
+            {
+                condition = "";
+            }
             sponsorPanel.add(makeStatLabel(condition));
 
             // Bonus earned
