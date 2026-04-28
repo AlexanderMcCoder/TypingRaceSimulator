@@ -139,7 +139,16 @@ public class LeaderboardPanel extends JPanel
             int i = sortedIndexes[rank];
 
             // Rank medal colours — gold, silver, bronze
-            Color rankColour = Color.BLACK;
+            Color rankColour;
+            if (rank == 0) {
+                rankColour = new Color(255, 215, 0);
+            }
+            else if (rank == 1) {
+                rankColour = new Color(192, 192, 192);
+            }
+            else {
+                rankColour = new Color(205, 127, 50);
+            }
 
             JLabel rankLabel = new JLabel((rank + 1) + ".  " + typists[i].getName());
             rankLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -199,7 +208,16 @@ public class LeaderboardPanel extends JPanel
         {
             int i = sortedIndexes[rank];
 
-            Color rankColour = Color.BLACK;
+            Color rankColour;
+            if (rank == 0) {
+                rankColour = new Color(255, 215, 0);
+            }
+            else if (rank == 1) {
+                rankColour = new Color(192, 192, 192);
+            }
+            else {
+                rankColour = new Color(205, 127, 50);
+            }
 
             JLabel rankLabel = new JLabel((rank + 1) + ".  " + typists[i].getName());
             rankLabel.setFont(new Font("Arial", Font.BOLD, 14));
