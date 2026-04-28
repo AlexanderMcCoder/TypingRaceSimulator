@@ -58,23 +58,23 @@ public class RacePanel extends JPanel
     public RacePanel(TypingRaceGUI gui)
     {
         this.gui = gui;
-        setBackground(new Color(20, 20, 20));
+        setBackground(Color.WHITE);
         setLayout(new BorderLayout());
 
         // Title bar at top
         JLabel titleLabel = new JLabel("RACE IN PROGRESS", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
-        titleLabel.setForeground(new Color(0, 255, 100));
+        titleLabel.setForeground(Color.BLACK);
         add(titleLabel, BorderLayout.NORTH);
 
         // Turn counter
         turnLabel = new JLabel("Turn: 0", JLabel.CENTER);
         turnLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        turnLabel.setForeground(Color.LIGHT_GRAY);
+        turnLabel.setForeground(Color.BLACK);
 
         // Centre panel holds all the typist lanes
         JPanel centrePanel = new JPanel(new GridLayout(0, 1, 5, 5));
-        centrePanel.setBackground(new Color(20, 20, 20));
+        centrePanel.setBackground(Color.WHITE);
 
         // We support up to 3 typists — lanes created dynamically in setupRace()
         lanePanels = new JPanel[3];
@@ -85,21 +85,21 @@ public class RacePanel extends JPanel
         {
             // Each lane is a panel with BorderLayout
             lanePanels[i] = new JPanel(new BorderLayout());
-            lanePanels[i].setBackground(new Color(35, 35, 35));
-            lanePanels[i].setBorder(BorderFactory.createLineBorder(new Color(60, 60, 60)));
+            lanePanels[i].setBackground(Color.WHITE);
+            lanePanels[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
             // Passage label shows the text with the typist's cursor position highlighted
             passageLabels[i] = new JLabel();
             passageLabels[i].setFont(new Font("Courier New", Font.PLAIN, 14));
-            passageLabels[i].setForeground(Color.WHITE);
+            passageLabels[i].setForeground(Color.BLACK);
             // setOpaque(true) makes the label's background colour visible
             passageLabels[i].setOpaque(true);
-            passageLabels[i].setBackground(new Color(35, 35, 35));
+            passageLabels[i].setBackground(Color.WHITE);
 
             // Status label shows name, accuracy, burnout info on the right
             statusLabels[i] = new JLabel();
             statusLabels[i].setFont(new Font("Arial", Font.PLAIN, 13));
-            statusLabels[i].setForeground(Color.LIGHT_GRAY);
+            statusLabels[i].setForeground(Color.BLACK);
             // setPreferredSize fixes the width so the status label does not resize during the race
             statusLabels[i].setPreferredSize(new Dimension(280, 40));
 
@@ -112,10 +112,10 @@ public class RacePanel extends JPanel
         // Legend at the bottom
         JLabel legendLabel = new JLabel("  [~] = burnt out     [<] = just mistyped", JLabel.LEFT);
         legendLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        legendLabel.setForeground(Color.GRAY);
+        legendLabel.setForeground(Color.BLACK);
 
         JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.setBackground(new Color(20, 20, 20));
+        bottomPanel.setBackground(Color.WHITE);
         bottomPanel.add(turnLabel, BorderLayout.NORTH);
         bottomPanel.add(legendLabel, BorderLayout.SOUTH);
 
@@ -389,7 +389,7 @@ public class RacePanel extends JPanel
             }
             else
             {
-                statusLabels[i].setForeground(Color.LIGHT_GRAY);
+                statusLabels[i].setForeground(Color.BLACK);
             }
             statusLabels[i].setText(status);
         }

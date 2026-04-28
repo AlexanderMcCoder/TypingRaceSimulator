@@ -61,7 +61,7 @@ public class ResultsPanel extends JPanel
     public ResultsPanel(TypingRaceGUI gui)
     {
         this.gui = gui;
-        setBackground(new Color(20, 20, 20));
+        setBackground(Color.WHITE);
         setLayout(new BorderLayout());
 
         // Initialise persistent data for up to 3 typists
@@ -73,33 +73,33 @@ public class ResultsPanel extends JPanel
         // Winner banner at the top
         winnerLabel = new JLabel("", JLabel.CENTER);
         winnerLabel.setFont(new Font("Arial", Font.BOLD, 26));
-        winnerLabel.setForeground(new Color(255, 215, 0));
+        winnerLabel.setForeground(Color.BLACK);
         add(winnerLabel, BorderLayout.NORTH);
 
         // Main content area split into three sections
         JPanel contentPanel = new JPanel(new GridLayout(1, 3, 10, 0));
-        contentPanel.setBackground(new Color(20, 20, 20));
+        contentPanel.setBackground(Color.WHITE);
 
         // Stats section (left)
         statsPanel = new JPanel();
         // BoxLayout stacks components vertically inside the panel
         statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
-        statsPanel.setBackground(new Color(35, 35, 35));
-        statsPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 200, 255)));
+        statsPanel.setBackground(Color.WHITE);
+        statsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         // Leaderboard section (middle)
         leaderboardPanel = new JPanel();
         // BoxLayout stacks components vertically inside the panel
         leaderboardPanel.setLayout(new BoxLayout(leaderboardPanel, BoxLayout.Y_AXIS));
-        leaderboardPanel.setBackground(new Color(35, 35, 35));
-        leaderboardPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0)));
+        leaderboardPanel.setBackground(Color.WHITE);
+        leaderboardPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         // Sponsor section (right)
         sponsorPanel = new JPanel();
         // BoxLayout stacks components vertically inside the panel
         sponsorPanel.setLayout(new BoxLayout(sponsorPanel, BoxLayout.Y_AXIS));
-        sponsorPanel.setBackground(new Color(35, 35, 35));
-        sponsorPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 100)));
+        sponsorPanel.setBackground(Color.WHITE);
+        sponsorPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         contentPanel.add(statsPanel);
         contentPanel.add(leaderboardPanel);
@@ -108,19 +108,19 @@ public class ResultsPanel extends JPanel
 
         // Bottom buttons
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.setBackground(new Color(20, 20, 20));
+        buttonPanel.setBackground(Color.WHITE);
 
         JButton raceAgainButton = new JButton("RACE AGAIN");
         raceAgainButton.setFont(new Font("Arial", Font.BOLD, 14));
         raceAgainButton.setBackground(new Color(0, 200, 100));
-        raceAgainButton.setForeground(Color.WHITE);
+        raceAgainButton.setForeground(Color.BLACK);
         raceAgainButton.setFocusPainted(false);
         raceAgainButton.addActionListener(e -> gui.showScreen(TypingRaceGUI.SETUP_SCREEN));
 
         JButton statsButton = new JButton("VIEW STATS");
         statsButton.setFont(new Font("Arial", Font.BOLD, 14));
         statsButton.setBackground(new Color(0, 150, 255));
-        statsButton.setForeground(Color.WHITE);
+        statsButton.setForeground(Color.BLACK);
         statsButton.setFocusPainted(false);
         statsButton.addActionListener(e -> {
             gui.getStatsPanel().refresh(typists, wpmValues, accuracyPercents, burnoutCounts);
@@ -129,8 +129,8 @@ public class ResultsPanel extends JPanel
 
         JButton leaderboardButton = new JButton("LEADERBOARD");
         leaderboardButton.setFont(new Font("Arial", Font.BOLD, 14));
-        leaderboardButton.setBackground(new Color(255, 165, 0));
-        leaderboardButton.setForeground(Color.WHITE);
+        leaderboardButton.setBackground(new Color(200, 200, 200));
+        leaderboardButton.setForeground(Color.BLACK);
         leaderboardButton.setFocusPainted(false);
         leaderboardButton.addActionListener(e -> {
             gui.getLeaderboardPanel().refresh(typists, cumulativePoints, totalEarnings, raceCount);
@@ -231,7 +231,7 @@ public class ResultsPanel extends JPanel
 
         JLabel title = new JLabel("Race Statistics");
         title.setFont(new Font("Arial", Font.BOLD, 16));
-        title.setForeground(new Color(0, 200, 255));
+        title.setForeground(Color.BLACK);
         statsPanel.add(title);
         statsPanel.add(Box.createVerticalStrut(10));
 
@@ -243,11 +243,11 @@ public class ResultsPanel extends JPanel
 
             if (i == winnerIndex)
             {
-                nameLabel.setForeground(new Color(255, 215, 0));
+                nameLabel.setForeground(Color.BLACK);
             }
             else
             {
-                nameLabel.setForeground(Color.WHITE);
+                nameLabel.setForeground(Color.BLACK);
             }
             
             statsPanel.add(nameLabel);
@@ -289,14 +289,14 @@ public class ResultsPanel extends JPanel
 
         JLabel title = new JLabel("Leaderboard");
         title.setFont(new Font("Arial", Font.BOLD, 16));
-        title.setForeground(new Color(255, 215, 0));
+        title.setForeground(Color.BLACK);
         leaderboardPanel.add(title);
         leaderboardPanel.add(Box.createVerticalStrut(10));
 
         // Points earned this race
         JLabel thisRaceLabel = new JLabel("This Race:");
         thisRaceLabel.setFont(new Font("Arial", Font.BOLD, 13));
-        thisRaceLabel.setForeground(Color.LIGHT_GRAY);
+        thisRaceLabel.setForeground(Color.BLACK);
         leaderboardPanel.add(thisRaceLabel);
 
         for (int i = 0; i < typists.length; i++)
@@ -310,7 +310,7 @@ public class ResultsPanel extends JPanel
         // Cumulative points
         JLabel totalLabel = new JLabel("Total Points:");
         totalLabel.setFont(new Font("Arial", Font.BOLD, 13));
-        totalLabel.setForeground(Color.LIGHT_GRAY);
+        totalLabel.setForeground(Color.BLACK);
         leaderboardPanel.add(totalLabel);
 
         for (int i = 0; i < typists.length; i++)
@@ -324,7 +324,7 @@ public class ResultsPanel extends JPanel
         // Badges
         JLabel badgeLabel = new JLabel("Badges:");
         badgeLabel.setFont(new Font("Arial", Font.BOLD, 13));
-        badgeLabel.setForeground(Color.LIGHT_GRAY);
+        badgeLabel.setForeground(Color.BLACK);
         leaderboardPanel.add(badgeLabel);
 
         for (int i = 0; i < typists.length; i++)
@@ -349,7 +349,7 @@ public class ResultsPanel extends JPanel
 
         JLabel title = new JLabel("Sponsors");
         title.setFont(new Font("Arial", Font.BOLD, 16));
-        title.setForeground(new Color(0, 255, 100));
+        title.setForeground(Color.BLACK);
         sponsorPanel.add(title);
         sponsorPanel.add(Box.createVerticalStrut(10));
 
@@ -370,7 +370,7 @@ public class ResultsPanel extends JPanel
             // Sponsor label
             JLabel sponsorLabel = new JLabel(typists[i].getName() + " - " + sponsorName);
             sponsorLabel.setFont(new Font("Arial", Font.BOLD, 12));
-            sponsorLabel.setForeground(Color.WHITE);
+            sponsorLabel.setForeground(Color.BLACK);
             sponsorPanel.add(sponsorLabel);
 
             // Sponsor condition
@@ -395,14 +395,14 @@ public class ResultsPanel extends JPanel
             {
                 JLabel upgradeLabel = new JLabel("Upgrade unlocked: Better Keyboard + Wrist Support!");
                 upgradeLabel.setFont(new Font("Arial", Font.BOLD, 11));
-                upgradeLabel.setForeground(new Color(0, 255, 100));
+                upgradeLabel.setForeground(Color.BLACK);
                 sponsorPanel.add(upgradeLabel);
             }
             else if (totalEarnings[i] >= 100)
             {
                 JLabel upgradeLabel = new JLabel("Upgrade unlocked: Better Keyboard!");
                 upgradeLabel.setFont(new Font("Arial", Font.BOLD, 11));
-                upgradeLabel.setForeground(new Color(0, 255, 100));
+                upgradeLabel.setForeground(Color.BLACK);
                 sponsorPanel.add(upgradeLabel);
             }
         }
@@ -563,7 +563,7 @@ public class ResultsPanel extends JPanel
     {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", Font.PLAIN, 12));
-        label.setForeground(Color.LIGHT_GRAY);
+        label.setForeground(Color.BLACK);
         return label;
     }
 }

@@ -43,7 +43,7 @@ public class StatsPanel extends JPanel
     public StatsPanel(TypingRaceGUI gui)
     {
         this.gui = gui;
-        setBackground(new Color(20, 20, 20));
+        setBackground(Color.WHITE);
         setLayout(new BorderLayout());
 
         // Initialise storage for up to 3 typists, 5 races of history
@@ -58,29 +58,29 @@ public class StatsPanel extends JPanel
         // Title
         JLabel titleLabel = new JLabel("STATISTICS", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
-        titleLabel.setForeground(new Color(0, 200, 255));
+        titleLabel.setForeground(Color.BLACK);
         add(titleLabel, BorderLayout.NORTH);
 
         // Content panel rebuilt on refresh
         contentPanel = new JPanel(new GridLayout(1, 3, 10, 0));
-        contentPanel.setBackground(new Color(20, 20, 20));
+        contentPanel.setBackground(Color.WHITE);
         add(contentPanel, BorderLayout.CENTER);
 
         // Back button
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.setBackground(new Color(20, 20, 20));
+        buttonPanel.setBackground(Color.WHITE);
 
         JButton backButton = new JButton("BACK TO RESULTS");
         backButton.setFont(new Font("Arial", Font.BOLD, 14));
         backButton.setBackground(new Color(0, 150, 255));
-        backButton.setForeground(Color.WHITE);
+        backButton.setForeground(Color.BLACK);
         backButton.setFocusPainted(false);
         backButton.addActionListener(e -> gui.showScreen(TypingRaceGUI.RESULTS_SCREEN));
 
         JButton compareButton = new JButton("COMPARE TYPISTS");
         compareButton.setFont(new Font("Arial", Font.BOLD, 14));
-        compareButton.setBackground(new Color(255, 165, 0));
-        compareButton.setForeground(Color.WHITE);
+        compareButton.setBackground(new Color(200, 200, 200));
+        compareButton.setForeground(Color.BLACK);
         compareButton.setFocusPainted(false);
         compareButton.addActionListener(e -> showComparisonView());
 
@@ -159,13 +159,13 @@ public class StatsPanel extends JPanel
             JPanel typistPanel = new JPanel();
             // BoxLayout stacks components vertically
             typistPanel.setLayout(new BoxLayout(typistPanel, BoxLayout.Y_AXIS));
-            typistPanel.setBackground(new Color(35, 35, 35));
-            typistPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 200, 255)));
+            typistPanel.setBackground(Color.WHITE);
+            typistPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
             // Typist name header
             JLabel nameLabel = new JLabel(typists[i].getName());
             nameLabel.setFont(new Font("Arial", Font.BOLD, 15));
-            nameLabel.setForeground(new Color(0, 200, 255));
+            nameLabel.setForeground(Color.BLACK);
             typistPanel.add(nameLabel);
             typistPanel.add(Box.createVerticalStrut(10));
 
@@ -245,8 +245,8 @@ public class StatsPanel extends JPanel
 
         // setEditable(false) prevents the user from typing in the text area
         textArea.setEditable(false);
-        textArea.setBackground(new Color(30, 30, 30));
-        textArea.setForeground(Color.WHITE);
+        textArea.setBackground(Color.WHITE);
+        textArea.setForeground(Color.BLACK);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
         // setPreferredSize fixes the size of the dialog popup
@@ -263,7 +263,7 @@ public class StatsPanel extends JPanel
     {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setForeground(Color.WHITE);
+        label.setForeground(Color.BLACK);
         return label;
     }
 
@@ -274,7 +274,7 @@ public class StatsPanel extends JPanel
     {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", Font.PLAIN, 12));
-        label.setForeground(Color.LIGHT_GRAY);
+        label.setForeground(Color.BLACK);
         return label;
     }
 }

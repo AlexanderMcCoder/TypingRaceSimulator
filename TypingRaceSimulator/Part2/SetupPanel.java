@@ -68,20 +68,20 @@ public class SetupPanel extends JPanel
     public SetupPanel(TypingRaceGUI gui)
     {
         this.gui = gui;
-        setBackground(new Color(30, 30, 30));
+        setBackground(Color.WHITE);
         setLayout(new BorderLayout());
 
         // Title at the top
         JLabel titleLabel = new JLabel("TYPING RACE SIMULATOR", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
-        titleLabel.setForeground(new Color(0, 200, 255));
+        titleLabel.setForeground(Color.BLACK);
         add(titleLabel, BorderLayout.NORTH);
 
         // Main content panel with scrolling in case content is too tall
         JPanel contentPanel = new JPanel();
         // BoxLayout stacks components vertically
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.setBackground(new Color(30, 30, 30));
+        contentPanel.setBackground(Color.WHITE);
 
         // Add each section
         contentPanel.add(buildPassageSection());
@@ -94,7 +94,7 @@ public class SetupPanel extends JPanel
         // JScrollPane adds scroll bars when content is too tall to fit
         // This is extended to wrap an entire panel
         JScrollPane scrollPane = new JScrollPane(contentPanel);
-        scrollPane.setBackground(new Color(30, 30, 30));
+        scrollPane.setBackground(Color.WHITE);
         scrollPane.setBorder(null);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -102,12 +102,12 @@ public class SetupPanel extends JPanel
         JButton startButton = new JButton("START RACE");
         startButton.setFont(new Font("Arial", Font.BOLD, 18));
         startButton.setBackground(new Color(0, 200, 100));
-        startButton.setForeground(Color.WHITE);
+        startButton.setForeground(Color.BLACK);
         startButton.setFocusPainted(false);
         startButton.addActionListener(e -> startRace());
 
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setBackground(new Color(30, 30, 30));
+        bottomPanel.setBackground(Color.WHITE);
         bottomPanel.add(startButton);
         add(bottomPanel, BorderLayout.SOUTH);
     }
@@ -119,37 +119,37 @@ public class SetupPanel extends JPanel
     private JPanel buildPassageSection()
     {
         JPanel wrapper = new JPanel(new BorderLayout());
-        wrapper.setBackground(new Color(30, 30, 30));
+        wrapper.setBackground(Color.WHITE);
 
         // Section header label
         JLabel sectionTitle = new JLabel("Passage Selection");
         sectionTitle.setFont(new Font("Arial", Font.BOLD, 14));
-        sectionTitle.setForeground(new Color(0, 200, 255));
+        sectionTitle.setForeground(Color.BLACK);
         wrapper.add(sectionTitle, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(3, 2, 10, 5));
-        panel.setBackground(new Color(30, 30, 30));
-        panel.setBorder(BorderFactory.createLineBorder(new Color(0, 200, 255)));
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         // Passage dropdown bar using JComboBox<>
         JLabel passageLabel = new JLabel("Choose Passage:");
-        passageLabel.setForeground(Color.WHITE);
+        passageLabel.setForeground(Color.BLACK);
         passageLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 
         passageComboBox = new JComboBox<>(new String[]{
             "Short (43 chars)", "Medium (80 chars)", "Long (131 chars)", "Custom"
         });
-        passageComboBox.setBackground(new Color(50, 50, 50));
-        passageComboBox.setForeground(Color.WHITE);
+        passageComboBox.setBackground(Color.WHITE);
+        passageComboBox.setForeground(Color.BLACK);
 
         // Custom passage field (only visible when Custom is selected)
         JLabel customLabel = new JLabel("Custom Passage:");
-        customLabel.setForeground(Color.WHITE);
+        customLabel.setForeground(Color.BLACK);
         customLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 
         customPassageField = new JTextField("Type your custom passage here");
-        customPassageField.setBackground(new Color(50, 50, 50));
-        customPassageField.setForeground(Color.GRAY);
+        customPassageField.setBackground(Color.WHITE);
+        customPassageField.setForeground(Color.BLACK);
         customPassageField.setEnabled(false);
 
         // Show/hide custom field based on selection
@@ -158,24 +158,24 @@ public class SetupPanel extends JPanel
             customPassageField.setEnabled(isCustom);
             if (isCustom)
             {
-                customPassageField.setForeground(Color.WHITE);
+                customPassageField.setForeground(Color.BLACK);
             }
             else
             {
-                customPassageField.setForeground(Color.GRAY);
+                customPassageField.setForeground(Color.BLACK);
             }
         });
 
         // Number of typists
         JLabel seatLabel = new JLabel("Number of Typists:");
-        seatLabel.setForeground(Color.WHITE);
+        seatLabel.setForeground(Color.BLACK);
         seatLabel.setFont(new Font("Arial", Font.PLAIN, 13));
 
         //JComboBox<Integer>: holds Integer items instead of strings
         // holds two options: 2 and 3 for the number of typists
         seatCountComboBox = new JComboBox<>(new Integer[]{2, 3});
-        seatCountComboBox.setBackground(new Color(50, 50, 50));
-        seatCountComboBox.setForeground(Color.WHITE);
+        seatCountComboBox.setBackground(Color.WHITE);
+        seatCountComboBox.setForeground(Color.BLACK);
         seatCountComboBox.setSelectedItem(3);
 
         panel.add(passageLabel);
@@ -196,32 +196,32 @@ public class SetupPanel extends JPanel
     private JPanel buildDifficultySection()
     {
         JPanel wrapper = new JPanel(new BorderLayout());
-        wrapper.setBackground(new Color(30, 30, 30));
+        wrapper.setBackground(Color.WHITE);
 
         // Styled label pinned to top( NORTH) so it always sits above the three modifier checkboxes
         JLabel sectionTitle = new JLabel("Difficulty Modifiers");
         sectionTitle.setFont(new Font("Arial", Font.BOLD, 14));
-        sectionTitle.setForeground(new Color(255, 165, 0));
+        sectionTitle.setForeground(Color.BLACK);
         wrapper.add(sectionTitle, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(3, 1, 5, 5));
-        panel.setBackground(new Color(30, 30, 30));
-        panel.setBorder(BorderFactory.createLineBorder(new Color(255, 165, 0)));
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         //check box of 3 modifiers: Autocorrect, Caffeine Mode, Night Shift
         autocorrectCheckBox = new JCheckBox("Autocorrect — slideBack amount is halved");
-        autocorrectCheckBox.setForeground(Color.WHITE);
-        autocorrectCheckBox.setBackground(new Color(30, 30, 30));
+        autocorrectCheckBox.setForeground(Color.BLACK);
+        autocorrectCheckBox.setBackground(Color.WHITE);
         autocorrectCheckBox.setFont(new Font("Arial", Font.PLAIN, 13));
 
         caffeineModeCheckBox = new JCheckBox("Caffeine Mode — speed boost for first 10 turns, then higher burnout risk");
-        caffeineModeCheckBox.setForeground(Color.WHITE);
-        caffeineModeCheckBox.setBackground(new Color(30, 30, 30));
+        caffeineModeCheckBox.setForeground(Color.BLACK);
+        caffeineModeCheckBox.setBackground(Color.WHITE);
         caffeineModeCheckBox.setFont(new Font("Arial", Font.PLAIN, 13));
 
         nightShiftCheckBox = new JCheckBox("Night Shift — all typists have slightly reduced accuracy");
-        nightShiftCheckBox.setForeground(Color.WHITE);
-        nightShiftCheckBox.setBackground(new Color(30, 30, 30));
+        nightShiftCheckBox.setForeground(Color.BLACK);
+        nightShiftCheckBox.setBackground(Color.WHITE);
         nightShiftCheckBox.setFont(new Font("Arial", Font.PLAIN, 13));
 
         panel.add(autocorrectCheckBox);
@@ -239,17 +239,17 @@ public class SetupPanel extends JPanel
     private JPanel buildTypistSection()
     {
         JPanel wrapper = new JPanel(new BorderLayout());
-        wrapper.setBackground(new Color(30, 30, 30));
+        wrapper.setBackground(Color.WHITE);
 
         // Styled label pinned to top(NORTH) so it sits above the three side-by-side typist columns
         JLabel sectionTitle = new JLabel("Customise Typists");
         sectionTitle.setFont(new Font("Arial", Font.BOLD, 14));
-        sectionTitle.setForeground(new Color(0, 255, 100));
+        sectionTitle.setForeground(Color.BLACK);
         wrapper.add(sectionTitle, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(1, 3, 10, 0));
-        panel.setBackground(new Color(30, 30, 30));
-        panel.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 100)));
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         // Default typist names and symbols
         String[] defaultNames = {"TURBOFINGERS", "QWERTY_QUEEN", "HUNT_N_PECK"};
@@ -268,20 +268,20 @@ public class SetupPanel extends JPanel
         {
             JPanel typistPanel = new JPanel();
             typistPanel.setLayout(new BoxLayout(typistPanel, BoxLayout.Y_AXIS));
-            typistPanel.setBackground(new Color(40, 40, 40));
+            typistPanel.setBackground(Color.WHITE);
 
             // Typist number header
             JLabel header = new JLabel("Typist " + (i + 1));
             header.setFont(new Font("Arial", Font.BOLD, 14));
-            header.setForeground(new Color(0, 200, 255));
+            header.setForeground(Color.BLACK);
             typistPanel.add(header);
             typistPanel.add(Box.createVerticalStrut(8));
 
             // Name
             typistPanel.add(makeLabel("Name:"));
             nameFields[i] = new JTextField(defaultNames[i]);
-            nameFields[i].setBackground(new Color(60, 60, 60));
-            nameFields[i].setForeground(Color.WHITE);
+            nameFields[i].setBackground(Color.WHITE);
+            nameFields[i].setForeground(Color.BLACK);
             // setMaximumSize limits how wide the field grows inside BoxLayout
             nameFields[i].setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
             typistPanel.add(nameFields[i]);
@@ -290,8 +290,8 @@ public class SetupPanel extends JPanel
             // Symbol
             typistPanel.add(makeLabel("Symbol (1 char):"));
             symbolFields[i] = new JTextField(defaultSymbols[i]);
-            symbolFields[i].setBackground(new Color(60, 60, 60));
-            symbolFields[i].setForeground(Color.WHITE);
+            symbolFields[i].setBackground(Color.WHITE);
+            symbolFields[i].setForeground(Color.BLACK);
             // setMaximumSize
             symbolFields[i].setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
             typistPanel.add(symbolFields[i]);
@@ -300,8 +300,8 @@ public class SetupPanel extends JPanel
             // Typing style
             typistPanel.add(makeLabel("Typing Style:"));
             styleComboBoxes[i] = new JComboBox<>(TYPING_STYLES);
-            styleComboBoxes[i].setBackground(new Color(60, 60, 60));
-            styleComboBoxes[i].setForeground(Color.WHITE);
+            styleComboBoxes[i].setBackground(Color.WHITE);
+            styleComboBoxes[i].setForeground(Color.BLACK);
             styleComboBoxes[i].setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
             typistPanel.add(styleComboBoxes[i]);
             typistPanel.add(Box.createVerticalStrut(5));
@@ -309,8 +309,8 @@ public class SetupPanel extends JPanel
             // Keyboard type
             typistPanel.add(makeLabel("Keyboard:"));
             keyboardComboBoxes[i] = new JComboBox<>(KEYBOARD_TYPES);
-            keyboardComboBoxes[i].setBackground(new Color(60, 60, 60));
-            keyboardComboBoxes[i].setForeground(Color.WHITE);
+            keyboardComboBoxes[i].setBackground(Color.WHITE);
+            keyboardComboBoxes[i].setForeground(Color.BLACK);
             keyboardComboBoxes[i].setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
             typistPanel.add(keyboardComboBoxes[i]);
             typistPanel.add(Box.createVerticalStrut(8));
@@ -337,7 +337,7 @@ public class SetupPanel extends JPanel
     private JLabel makeLabel(String text)
     {
         JLabel label = new JLabel(text);
-        label.setForeground(Color.LIGHT_GRAY);
+        label.setForeground(Color.BLACK);
         label.setFont(new Font("Arial", Font.PLAIN, 12));
         return label;
     }
@@ -348,8 +348,8 @@ public class SetupPanel extends JPanel
     private JCheckBox makeCheckBox(String text)
     {
         JCheckBox cb = new JCheckBox(text);
-        cb.setForeground(Color.WHITE);
-        cb.setBackground(new Color(40, 40, 40));
+        cb.setForeground(Color.BLACK);
+        cb.setBackground(Color.WHITE);
         cb.setFont(new Font("Arial", Font.PLAIN, 11));
         return cb;
     }

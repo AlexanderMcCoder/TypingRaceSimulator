@@ -33,32 +33,32 @@ public class LeaderboardPanel extends JPanel
     public LeaderboardPanel(TypingRaceGUI gui)
     {
         this.gui = gui;
-        setBackground(new Color(20, 20, 20));
+        setBackground(Color.WHITE);
         setLayout(new BorderLayout());
 
         // Title
         JLabel titleLabel = new JLabel("LEADERBOARD", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
-        titleLabel.setForeground(new Color(255, 215, 0));
+        titleLabel.setForeground(Color.BLACK);
         add(titleLabel, BorderLayout.NORTH);
 
         // Two side by side panels — points and earnings
         JPanel contentPanel = new JPanel(new GridLayout(1, 2, 20, 0));
-        contentPanel.setBackground(new Color(20, 20, 20));
+        contentPanel.setBackground(Color.WHITE);
 
         // Points leaderboard (Option A)
         pointsPanel = new JPanel();
         // BoxLayout stacks components vertically
         pointsPanel.setLayout(new BoxLayout(pointsPanel, BoxLayout.Y_AXIS));
-        pointsPanel.setBackground(new Color(35, 35, 35));
-        pointsPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0)));
+        pointsPanel.setBackground(Color.WHITE);
+        pointsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         // Earnings leaderboard (Option B)
         earningsPanel = new JPanel();
         // BoxLayout stacks components vertically
         earningsPanel.setLayout(new BoxLayout(earningsPanel, BoxLayout.Y_AXIS));
-        earningsPanel.setBackground(new Color(35, 35, 35));
-        earningsPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 100)));
+        earningsPanel.setBackground(Color.WHITE);
+        earningsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         contentPanel.add(pointsPanel);
         contentPanel.add(earningsPanel);
@@ -66,19 +66,19 @@ public class LeaderboardPanel extends JPanel
 
         // Back button
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.setBackground(new Color(20, 20, 20));
+        buttonPanel.setBackground(Color.WHITE);
 
         JButton backButton = new JButton("BACK TO RESULTS");
         backButton.setFont(new Font("Arial", Font.BOLD, 14));
         backButton.setBackground(new Color(0, 150, 255));
-        backButton.setForeground(Color.WHITE);
+        backButton.setForeground(Color.BLACK);
         backButton.setFocusPainted(false);
         backButton.addActionListener(e -> gui.showScreen(TypingRaceGUI.RESULTS_SCREEN));
 
         JButton setupButton = new JButton("NEW RACE");
         setupButton.setFont(new Font("Arial", Font.BOLD, 14));
         setupButton.setBackground(new Color(0, 200, 100));
-        setupButton.setForeground(Color.WHITE);
+        setupButton.setForeground(Color.BLACK);
         setupButton.setFocusPainted(false);
         setupButton.addActionListener(e -> gui.showScreen(TypingRaceGUI.SETUP_SCREEN));
 
@@ -123,7 +123,7 @@ public class LeaderboardPanel extends JPanel
 
         JLabel title = new JLabel("Points Leaderboard (Option A)");
         title.setFont(new Font("Arial", Font.BOLD, 16));
-        title.setForeground(new Color(255, 215, 0));
+        title.setForeground(Color.BLACK);
         pointsPanel.add(title);
         pointsPanel.add(Box.createVerticalStrut(15));
 
@@ -139,18 +139,7 @@ public class LeaderboardPanel extends JPanel
             int i = sortedIndexes[rank];
 
             // Rank medal colours — gold, silver, bronze
-            Color rankColour;
-            if (rank == 0) {
-                rankColour = new Color(255, 215, 0);
-            }
-
-            else if (rank == 1) {
-                rankColour = new Color(192, 192, 192);
-            }
-
-            else {
-                rankColour = new Color(205, 127, 50);
-            }
+            Color rankColour = Color.BLACK;
 
             JLabel rankLabel = new JLabel((rank + 1) + ".  " + typists[i].getName());
             rankLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -167,7 +156,7 @@ public class LeaderboardPanel extends JPanel
             {
                 JLabel titleLabel2 = new JLabel("Title: " + title2);
                 titleLabel2.setFont(new Font("Arial", Font.ITALIC, 12));
-                titleLabel2.setForeground(new Color(255, 215, 0));
+                titleLabel2.setForeground(Color.BLACK);
                 pointsPanel.add(titleLabel2);
             }
 
@@ -177,7 +166,7 @@ public class LeaderboardPanel extends JPanel
             {
                 JLabel badgeLabel = new JLabel("Badge: " + badge);
                 badgeLabel.setFont(new Font("Arial", Font.ITALIC, 12));
-                badgeLabel.setForeground(new Color(0, 255, 200));
+                badgeLabel.setForeground(Color.BLACK);
                 pointsPanel.add(badgeLabel);
             }
 
@@ -196,7 +185,7 @@ public class LeaderboardPanel extends JPanel
 
         JLabel title = new JLabel("Earnings Leaderboard (Option B)");
         title.setFont(new Font("Arial", Font.BOLD, 16));
-        title.setForeground(new Color(0, 255, 100));
+        title.setForeground(Color.BLACK);
         earningsPanel.add(title);
         earningsPanel.add(Box.createVerticalStrut(15));
 
@@ -210,18 +199,7 @@ public class LeaderboardPanel extends JPanel
         {
             int i = sortedIndexes[rank];
 
-            Color rankColour;
-            if (rank == 0) {
-                rankColour = new Color(255, 215, 0);
-            }
-
-            else if (rank == 1) {
-                rankColour = new Color(192, 192, 192);
-            }
-
-            else {
-                rankColour = new Color(205, 127, 50);
-            }
+            Color rankColour = Color.BLACK;
 
             JLabel rankLabel = new JLabel((rank + 1) + ".  " + typists[i].getName());
             rankLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -376,7 +354,7 @@ public class LeaderboardPanel extends JPanel
     {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", Font.PLAIN, 12));
-        label.setForeground(Color.LIGHT_GRAY);
+        label.setForeground(Color.BLACK);
         return label;
     }
 
@@ -387,7 +365,7 @@ public class LeaderboardPanel extends JPanel
     {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", Font.PLAIN, 12));
-        label.setForeground(new Color(0, 255, 100));
+        label.setForeground(Color.BLACK);
         return label;
     }
 
